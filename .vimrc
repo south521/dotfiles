@@ -1,4 +1,35 @@
 "setting
+
+if has('vim_starting')
+   set runtimepath+=~/.vim/bundle/neobundle.vim/
+
+    if !isdirectory(expand("~/.vim/bundle/neobundle.vim/"))
+        echo "install NeoBundle..."
+       :call system("git clone git://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim")
+    endif
+endif
+
+call neobundle#begin(expand('~/.vim/bundle/'))
+
+NeoBundleFetch 'Shougo/neobundle.vim'
+"----------------------------------------------------------
+NeoBundle 'sudo.vim'
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/unite-outline'
+NeoBundle 'Shougo/neocomplete.vim'
+NeoBundle 'davidhalter/jedi-vim'
+NeoBundle 'thinca/vim-quickrun'
+NeoBundle 'kana/vim-smartinput'
+NeoBundle 'kana/vim-operator-user'
+NeoBundle 'kana/vim-textobj-user'
+NeoBundle 'rhysd/vim-operator-surround'
+"----------------------------------------------------------
+call neobundle#end()
+
+filetype plugin indent on
+
+NeoBundleCheck
+
 "文字コードをUFT-8に設定
 set fenc=utf-8
 " バックアップファイルを作らない
@@ -12,6 +43,12 @@ set hidden
 " 入力中のコマンドをステータスに表示する
 set showcmd
 
+"Python"
+set completeopt-=preview
+
+
+set t_Co=256
+syntax on
 
 " 見た目系
 " 行番号を表示
@@ -22,6 +59,8 @@ set cursorline
 set cursorcolumn
 " 行末の1文字先までカーソルを移動できるように
 set virtualedit=onemore
+""
+set smarttab
 " インデントはスマートインデント
 set smartindent
 " ビープ音を可視化
@@ -36,6 +75,7 @@ set wildmode=list:longest
 nnoremap j gj
 nnoremap k gk
 
+inoremap <silent> jj <ESC>
 
 " Tab系
 " 不可視文字を可視化(タブが「▸-」と表示される)
@@ -62,3 +102,17 @@ set hlsearch
 " ESC連打でハイライト解除
 nmap <Esc><Esc> :nohlsearch<CR><Esc>
 
+"colorscheme hybrid
+set clipboard+=unnamed
+"if &term =~ "xterm"
+"    let &t_SI .= "\e[?2004h"
+"    let &t_EI .= "\e[?2004l"
+"    let &pastetoggle = "\e[201~"
+
+"    function XTermPasteBegin(ret)
+"       set paste
+"       return a:ret
+"    endfunction
+
+"    inoremap <special> <expr> <Esc>[200~ XTermPasteBegin("")
+"endif
