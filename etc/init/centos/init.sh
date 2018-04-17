@@ -4,21 +4,23 @@ read opt
 printf "password: "
 read password
 
-echo "$password" | sudo -S yum update && sudo -S yum upgrade
-echo "$password" | sudo yum install -y git ncurse-devel libevent-devel
-echo "$password" | sudo yum groupinstall "Development Tool"
+#echo "$password" | sudo -S yum update && sudo -S yum upgrade
+echo "$password" | sudo -S yum install -y git ncurse-devel libevent-devel
+echo "$password" | sudo -S yum -y groups install Development\ Tools
 
 
-#Beep off
-echo "$password" | echo "set bell-style none" >> /etc/inputrc
 
 if echo "$opt" | grep -e 't' -e 'a' > /dev/null ;then
 #tmux install
+  cd
   git clone https://github.com/tmux/tmux.git
   cd tmux
+  ./autogen.sh
   ./configure && make
-  echo "$password" | sudo make install
+  echo "$password" | sudo -S make install
   cd
+else
+  echo "SKIP TMUX"
 fi
 
 #zsh install
@@ -26,13 +28,15 @@ if echo $opt | grep -e 'z' -e 'k' > /dev/null ; then
  # git clone https://github.com/zsh/zsh.git 
  # cd zsh
  # ./configure && make
- echo "$password" | sudo yum install -y zsh
-  
+ echo "$password" | sudo -S yum install -y zsh
+
+else
+  echo "SKIP ZSH"
   
 
 fi 
 
 #kvm install
-if echo $opt | grep -e 'k ' -e 'a' > /dev/null ; then
+#if echo $opt | grep -e 'k ' -e 'a' > /dev/null ; then
 
-fi 
+#fi 
