@@ -102,7 +102,8 @@ set hlsearch
 " ESC連打でハイライト解除
 nmap <Esc><Esc> :nohlsearch<CR><Esc>
 
-"colorscheme hybrid
+set background=dark
+colorscheme hybrid
 set clipboard+=unnamed
 "if &term =~ "xterm"
 "    let &t_SI .= "\e[?2004h"

@@ -1,8 +1,16 @@
 #!/bin/sh
-ln -sf ~/dotfiles/.vimrc ~/.vimrc
-ln -sf ~/dotfiles/.zshrc.linux ~/.zshrc
-#ln -sf ~/dotfiles/.bash_profile ~/.bash_profile
-#ln -sf ~/dotfiles/.bashrc~/.bashrc
-#ln -sf ~/dotfiles/.ssh/config ~/.ssh/config
-ln -sf ~/dotfiles/.exrc ~/.exrc
-ln -sf ~/dotfiles/.tmux.conf.linux ~/.tmux.conf
+DOT_DIR = "${HOME}/dotfiles"
+
+cd ${DOT_DIR}
+
+for f in .??*
+do
+  #ignore files
+  [[${f} = ".git"]] && continue
+  [[${f} = ".gitignore".]] && continue
+  [[${f} = ".ssh"]] && continue
+  ln -sfnv ${DOT_DIR}/${f} ${HOME}/${f}
+
+done
+echo $(tput setaf 2)DEPLOY DOTFILES COMPLETE
+

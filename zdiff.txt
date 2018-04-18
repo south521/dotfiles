@@ -1,0 +1,32 @@
+8a9
+> 
+74,86c75,79
+< # Setting PATH for Python 3.6
+< # The original version is saved in .bash_profile.pysave
+< PATH="/Library/Frameworks/Python.framework/Versions/3.6/bin:${PATH}"
+< export PATH
+< export PYENV_ROOT=$HOME/.pyenv
+< export PATH=$PYENV_ROOT/bin:$PATH
+< export PATH=$PATH:$HOME/local/openmpi/bin
+< export DYLD_LIBRARY_PATH=$HOME/local/openmpi/lib
+< eval "$(pyenv init -)"
+< alias ls="ls -G"
+< alias ll="ls -lG"
+< alias la="ls -laG"
+< alias diff='colordiff -u'
+---
+> ## basic alias
+> lias ll='ls -alF'
+> alias la='ls -A'
+> alias l='ls -CF'
+> 
+93,98c93,94
+< set-option -g default-command "reattach-to-user-namespace -l zsh"
+< ## コピーモードの操作をvi風に設定する
+< bind-key -T copy-mode-vi v send-keys -X begin-selection
+< bind-key -T copy-mode-vi y send-keys copy-pipe-and-cancel "reattach-to-user-namespace pbcopy"
+< unbind -T copy-mode-vi Enter
+< bind-key -T copy-mode-vi Enter send-keys -X copy-pipe-and-cancel "reattach-to-user-namespace pbcopy"
+---
+> bind-key -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "xclip -i -sel clip > /dev/null"
+> bind-key -T copy-mode-vi Enter send-keys -X copy-pipe-and-cancel "xclip -i -sel clip > /dev/null"
