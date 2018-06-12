@@ -4,7 +4,7 @@ else
   PASSWD="$1"
 fi 
 
-DOT_DIR = "${HOME}/dotfiles"
+DOT_DIR="${HOME}/dotfiles"
 
 #tmux install
 cd 

@@ -1,5 +1,5 @@
 #!/bin/sh
-DOT_DIR = "${HOME}/dotfiles"
+DOT_DIR="${HOME}/dotfiles"
 
 cd ${DOT_DIR}
 

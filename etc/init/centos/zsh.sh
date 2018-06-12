@@ -1,5 +1,5 @@
 #!/bin/sh
-DOT_DIR = "${HOME}/dotfiles"
+DOT_DIR="${HOME}/dotfiles"
 
 if [ $# -ne 1 ]; then
   read -sp "PASS:" PASSWD
